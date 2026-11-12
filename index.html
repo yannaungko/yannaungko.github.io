@@ -11,11 +11,11 @@
 <style>
   :root {
     color-scheme: light;
-    --bg: #f6f4ef;
+    --bg: #ffffff;
     --paper: #ffffff;
     --ink: #1b1d21;
     --muted: #5d6169;
-    --line: #dcd8cf;
+    --line: #e3e3e3;
     --accent: #b4441f;
     --accent-soft: #f3e3da;
     --grid: rgba(27,29,33,.06);
@@ -67,15 +67,20 @@
   .chip:hover { border-color: var(--accent); text-decoration: none; }
   .chip svg { width: 15px; height: 15px; flex: none; }
   .wave {
-    display: block; width: 100%; height: 120px; margin-top: -8px;
-    background: url("assets/seismic_wave.png") left center / auto 100% no-repeat;
+    display: block; width: 100%; height: 150px; margin-top: -36px;
+    background: url("assets/seismic_wave.png") 220px center / auto 100% no-repeat;
     position: relative; z-index: 0;
   }
-  .wave::after {
-    content: ""; position: absolute; top: 58.5%; right: 0; height: 2px;
-    left: calc(120px * 1308 / 259 - 4px); background: #a0a0a0; transform: translateY(-50%);
+  .wave {
+    --h: 150px; --x: 220px;
   }
-  @media (max-width: 720px) { .wave { height: 80px; } .wave::after { left: calc(80px * 1308 / 259 - 4px); } }
+  .wave::before, .wave::after {
+    content: ""; position: absolute; top: calc(var(--h) * 151.5 / 259 + 0.7px); height: 2.2px;
+    background: rgba(160,160,160,.9); transform: translateY(-50%);
+  }
+  .wave::before { left: 0; width: calc(var(--x) + 2px); }
+  .wave::after { left: calc(var(--x) + var(--h) * 1308 / 259 - 3px); right: 0; }
+  @media (max-width: 720px) { .wave { --h: 100px; --x: 40px; height: 100px; margin-top: -16px; background-position: 40px center; } }
 
   nav.toc {
     position: sticky; top: 0; z-index: 5;
