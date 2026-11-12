@@ -7,237 +7,394 @@
 <meta name="description" content="Yan Naung Ko — Senior Structural Engineer specializing in performance-based seismic design of tall buildings, site-specific ground motions and nonlinear analysis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
 <style>
   :root {
     color-scheme: light;
-    --navy: #1f3550;
-    --ink: #1a1a1a;
-    --muted: #4a4f57;
-    --rule: #3c4350;
-    --row: #8e939a;
-    --bg: #eef0f3;
+    --bg: #f6f4ef;
+    --paper: #ffffff;
+    --ink: #1b1d21;
+    --muted: #5d6169;
+    --line: #dcd8cf;
+    --accent: #b4441f;
+    --accent-soft: #f3e3da;
+    --grid: rgba(27,29,33,.06);
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font: 17px/1.65 "Segoe UI", "Noto Sans", system-ui, sans-serif;
+    font: 16px/1.6 "IBM Plex Sans", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--navy); }
-  .page {
-    max-width: 920px;
-    margin: 32px auto;
-    background: #fff;
-    padding: 48px 56px 40px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.06);
-  }
-  @media (max-width: 720px) { .page { margin: 0; padding: 28px 18px; box-shadow: none; } }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
 
-  /* Header block */
-  .top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-end;
-         border-bottom: 3px solid var(--navy); padding-bottom: 18px; margin-bottom: 8px; }
-  .top h1 { margin: 0; font-size: 40px; font-weight: 800; color: var(--navy); line-height: 1.1; }
-  .top .role { font-size: 19px; color: var(--muted); margin-top: 4px; }
-  .contact { list-style: none; margin: 0; padding: 0; font-size: 15px; text-align: right; }
-  .contact li { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
-  .contact svg { width: 15px; height: 15px; fill: var(--navy); flex: none; }
-  @media (max-width: 720px) { .contact { text-align: left; } .contact li { justify-content: flex-start; } }
-
-  /* Section header: circle icon + bold title + rule */
-  section { margin-top: 30px; }
-  .sh { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-  .ico {
-    flex: none; width: 46px; height: 46px; border-radius: 50%;
-    border: 2px solid var(--navy); display: grid; place-items: center;
-    box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 3px var(--navy);
+  /* Header */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
-  .ico svg { width: 26px; height: 26px; fill: var(--navy); }
-  .sh h2 {
-    flex: 1; margin: 0; font-size: 22px; font-weight: 800; color: #111;
-    border-bottom: 2px solid var(--rule); padding-bottom: 2px; line-height: 1.3;
+  .hero .wrap { padding-top: 72px; padding-bottom: 56px; position: relative; z-index: 1; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent);
   }
-
-  /* Label / content rows */
-  .rows { margin-left: 56px; }
-  .r { display: grid; grid-template-columns: 240px 1fr; gap: 16px; padding: 8px 2px 10px; border-bottom: 1px solid var(--row); }
-  .r:last-child { border-bottom: 0; }
-  .rows.ruled .r:last-child { border-bottom: 1px solid var(--row); }
-  .lbl { font-size: 18px; color: #222; }
-  .lbl small { display: block; font-size: 15px; color: var(--muted); }
-  .c { font-size: 17px; }
-  .c .meta { font-size: 15px; color: #333; }
-  .c b { font-weight: 700; }
-  .c ul { margin: 4px 0 0; padding-left: 20px; }
-  .c li { margin: 2px 0; }
-  .when { color: var(--muted); font-size: 15px; }
-  .dots span { white-space: normal; }
-  .dots span::before { content: "\25CF"; margin: 0 6px 0 0; }
-  .dots span + span::before { margin-left: 4px; }
-  @media (max-width: 720px) {
-    .rows { margin-left: 0; }
-    .r { grid-template-columns: 1fr; gap: 2px; }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(40px, 7vw, 68px);
+    line-height: 1.02;
+    margin: 12px 0 16px;
+    letter-spacing: -.01em;
   }
+  .lede { font-size: 19px; color: var(--muted); max-width: 620px; margin: 0 0 28px; }
+  .contact { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--paper); color: var(--ink); font-size: 14px;
+  }
+  .chip:hover { border-color: var(--accent); text-decoration: none; }
+  .chip svg { width: 15px; height: 15px; flex: none; }
+  .spectrum {
+    position: absolute; right: -40px; bottom: 0; width: 560px; max-width: 70%;
+    opacity: .9; pointer-events: none;
+  }
+  @media (max-width: 720px) { .spectrum { opacity: .35; } }
 
-  footer { margin-top: 36px; text-align: center; font-size: 13px; color: var(--muted); letter-spacing: .06em; }
+  nav.toc {
+    position: sticky; top: 0; z-index: 5;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.toc .wrap { display: flex; gap: 22px; overflow-x: auto; padding-top: 12px; padding-bottom: 12px; }
+  nav.toc a { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  nav.toc a:hover { color: var(--ink); text-decoration: none; }
+
+  section { padding: 56px 0 8px; }
+  h2 {
+    font-family: "IBM Plex Mono", monospace; font-weight: 500;
+    font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .focus { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 17px; font-weight: 600; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .num { font-family: "IBM Plex Mono", monospace; color: var(--accent); font-size: 13px; }
+
+  /* Timeline */
+  .job { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
+  .job:first-of-type { border-top: 0; padding-top: 0; }
+  .when { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--muted); padding-top: 3px; }
+  .job h3 { margin: 0; font-size: 18px; font-weight: 600; }
+  .org { color: var(--muted); margin: 2px 0 10px; font-size: 15px; }
+  .job ul { margin: 0; padding-left: 18px; }
+  .job li { margin: 4px 0; }
+  .job li::marker { color: var(--accent); }
+  @media (max-width: 640px) { .job { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .proj { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+  .proj-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .proj h3 { margin: 0; font-size: 18px; font-weight: 600; }
+  .loc { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .proj p { margin: 0; color: var(--muted); font-size: 15px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+  .tag { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+
+  .gm-list { columns: 2 260px; column-gap: 32px; margin: 0; padding-left: 18px; }
+  .gm-list li { margin: 4px 0; break-inside: avoid; }
+  .gm-list li::marker { color: var(--accent); }
+  .sub { color: var(--muted); font-size: 15px; margin: 24px 0 10px; font-weight: 500; }
+
+  /* Skills */
+  .skills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill { border: 1px solid var(--line); background: var(--paper); border-radius: 6px; padding: 6px 12px; font-size: 14px; }
+
+  /* Research */
+  .research { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .label { font-family: "IBM Plex Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 6px; }
+  .research h3 { font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 20px; line-height: 1.3; margin: 0 0 8px; }
+
+  .edu { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .awards { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .awards li { display: grid; grid-template-columns: 70px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .awards li:first-child { border-top: 0; }
+  .awards .yr { font-family: "IBM Plex Mono", monospace; color: var(--accent); font-size: 14px; }
+  .awards strong { font-weight: 600; }
+  .awards span { display: block; color: var(--muted); font-size: 15px; }
+
+  footer { margin-top: 64px; border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <header class="top">
-    <div>
-      <h1>Yan Naung Ko</h1>
-      <div class="role">Civil &amp; Structural Engineer</div>
+<header class="hero">
+  <svg class="spectrum" viewBox="0 0 560 260" aria-hidden="true">
+    <defs>
+      <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="var(--accent)" stop-opacity=".18"/>
+        <stop offset="1" stop-color="var(--accent)" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <!-- stylised design response spectrum -->
+    <path d="M20 200 C 50 120, 70 70, 110 60 L 210 58 C 260 60, 300 110, 360 150 C 420 185, 480 205, 560 214 L 560 260 L 20 260 Z" fill="url(#g)"/>
+    <path d="M20 200 C 50 120, 70 70, 110 60 L 210 58 C 260 60, 300 110, 360 150 C 420 185, 480 205, 560 214" fill="none" stroke="var(--accent)" stroke-width="2.2"/>
+    <path d="M20 210 C 55 140, 80 95, 120 88 C 160 70, 190 98, 225 84 C 270 96, 300 135, 360 162 C 420 192, 480 210, 560 220" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 4" opacity=".7"/>
+    <path d="M20 205 C 50 150, 75 110, 105 74 C 145 52, 180 82, 215 66 C 255 76, 305 124, 360 156 C 420 188, 480 208, 560 217" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">Structural &amp; Earthquake Engineering</div>
+    <h1>Yan Naung Ko</h1>
+    <p class="lede">Senior Structural Engineer at AIT Solutions, Bangkok. I work on performance-based seismic design of tall buildings, site-specific design ground motions, and nonlinear response history analysis.</p>
+    <div class="contact">
+      <a class="chip" href="mailto:yannaungko.pth@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        yannaungko.pth@gmail.com
+      </a>
+      <a class="chip" href="https://www.linkedin.com/in/yan-naung-ko-b4761882">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21H9z"/></svg>
+        LinkedIn
+      </a>
+      <span class="chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        Bangkok, Thailand
+      </span>
     </div>
-    <ul class="contact">
-      <li><a href="mailto:yannaungko.pth@gmail.com">yannaungko.pth@gmail.com</a>
-        <svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4 7v10h16V7l-8 5.2z"/></svg></li>
-      <li><a href="https://www.linkedin.com/in/yan-naung-ko-b4761882">linkedin.com/in/yan-naung-ko-b4761882</a>
-        <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21H9z"/></svg></li>
-      <li>Bangkok, Thailand
-        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></li>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#focus">Focus</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#ground-motions">Ground motions</a>
+  <a href="#research">Research</a>
+  <a href="#skills">Skills</a>
+  <a href="#education">Education</a>
+</div></nav>
+
+<main class="wrap">
+
+  <section id="focus">
+    <h2>Areas of focus</h2>
+    <div class="focus">
+      <div class="card"><div class="num">01</div><h3>Performance-based seismic design</h3><p>3D nonlinear models of tall buildings in Perform3D, evaluated against LATBSDC and TBI acceptance criteria.</p></div>
+      <div class="card"><div class="num">02</div><h3>Site-specific ground motions</h3><p>Record selection, amplitude scaling and spectral matching, CMS, directionality, pulse and fling effects.</p></div>
+      <div class="card"><div class="num">03</div><h3>Probabilistic seismic hazard</h3><p>PSHA with OpenQuake to build uniform hazard and target spectra for design.</p></div>
+      <div class="card"><div class="num">04</div><h3>Evaluation &amp; retrofit</h3><p>Seismic assessment of existing buildings to ASCE/SEI 41, Tiers 1 to 3.</p></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="when">Apr 2021 — Present</div>
+      <div>
+        <h3>Senior Structural Engineer</h3>
+        <div class="org">AIT Solutions, Asian Institute of Technology · Bangkok</div>
+        <ul>
+          <li>Develop site-specific design ground motions for PBD and retrofit projects.</li>
+          <li>Build detailed 3D nonlinear models of tall buildings for NLRHA in Perform3D.</li>
+          <li>Evaluate global (drift, acceleration, axial strain) and component-level (rotation, displacement, shear) responses against LATBSDC and TBI guidelines.</li>
+          <li>Produce axial-strain maps to optimise shear-wall boundary-zone reinforcement (strain-based confinement).</li>
+          <li>Detailed design of components to ACI, AISC and LATBSDC from NLRHA results.</li>
+          <li>Seismic evaluation and retrofit of existing buildings to ASCE/SEI 41 (Tier 1 screening, Tier 2 detailed evaluation, Tier 3 advanced analysis).</li>
+          <li>Diaphragm design: collectors, shear-friction transfer, chords and in-plane slab shear capacity.</li>
+          <li>Foundation design from NLRHA using spaghetti moment envelopes and force-polygon methods.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Jun 2020 — Oct 2020</div>
+      <div>
+        <h3>Structural Design Engineer (Internship)</h3>
+        <div class="org">Utility Design Consultant · Bangkok</div>
+        <ul>
+          <li>Roof-slab design at MRT Orange Line OR22 station for The Square Skywalk addition.</li>
+          <li>Gantry-crane foundation design and front-end engineering design at the PTTLNG Nong Fab LNG Receiving Terminal.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Sep 2013 — Aug 2017</div>
+      <div>
+        <h3>Structural Design Engineer</h3>
+        <div class="org">ST Engineers Co., Ltd. · Yangon</div>
+        <ul>
+          <li>Many low- and mid-rise reinforced concrete residential and commercial buildings.</li>
+          <li>Steel structures, including industrial facilities and commercial buildings.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Feb 2013 — Aug 2013</div>
+      <div>
+        <h3>Project Coordinator (Façade Engineering)</h3>
+        <div class="org">AVA Global Pte Ltd · Yangon</div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Mar 2012 — Jan 2013</div>
+      <div>
+        <h3>Graduate Civil Engineer</h3>
+        <div class="org">Max Construction Co., Ltd. · Yangon</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Key projects</h2>
+    <div class="projects">
+      <article class="proj">
+        <div class="proj-top"><h3>Oriana</h3><span class="loc">Philippines</span></div>
+        <p>Two 55-storey residential towers on a six-level common podium.</p>
+        <div class="tags"><span class="tag">PBSD</span><span class="tag">NLRHA</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-top"><h3>Forum</h3><span class="loc">Mandaluyong, PH</span></div>
+        <p>Four residential towers (~150 m) on a common podium. RC central core walls with special moment frames; mat and isolated footings. Fibre-section walls and columns in Perform3D, 11 ground-motion pairs, foundation and diaphragm design from NLRHA.</p>
+        <div class="tags"><span class="tag">PBSD evaluation</span><span class="tag">Perform3D</span><span class="tag">Foundation</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-top"><h3>Jade</h3><span class="loc">Pasig, PH</span></div>
+        <p>52 storeys (~163 m), ~59,500 m². Coupled core and blade wall with a “flag” wall outrigger between floors 31 and 35. Main designer: MKA.</p>
+        <div class="tags"><span class="tag">Peer review</span><span class="tag">Outrigger</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-top"><h3>District M</h3><span class="loc">Mandaluyong, PH</span></div>
+        <p>41-storey residential tower (~136 m) on a six-level podium. Coupled RC shear walls with RC outrigger walls; flat slabs on bored piles.</p>
+        <div class="tags"><span class="tag">PBSD evaluation</span><span class="tag">Outrigger</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-top"><h3>Bench Headquarters</h3><span class="loc">Philippines</span></div>
+        <p>21 storeys above grade (~108 m) with five basements. Coupled special concrete core walls plus RC moment frames; variable-thickness mat.</p>
+        <div class="tags"><span class="tag">Peer review</span><span class="tag">Core wall</span></div>
+      </article>
+      <article class="proj">
+        <div class="proj-top"><h3>State Audit Office (SAO)</h3><span class="loc">Bangkok, TH</span></div>
+        <p>Member of the technical investigation team into the earthquake-induced collapse, using nonlinear performance-based analysis.</p>
+        <div class="tags"><span class="tag">Forensic</span><span class="tag">Ground motions</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="ground-motions">
+    <h2>Site-specific design ground motions</h2>
+    <ul class="gm-list">
+      <li>Amplitude scaling, spectral matching and hybrid matching</li>
+      <li>Orientation measures: GeoMean, RotD50, RotD100</li>
+      <li>Pulse classification in the fault-normal direction</li>
+      <li>Fling effect in the fault-parallel direction</li>
+      <li>Conditional Mean Spectrum (CMS)</li>
+      <li>Crustal and subduction records from the PEER databases</li>
     </ul>
-  </header>
-
-  <!-- Education -->
-  <section>
-    <div class="sh">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm-6.8 9.6V16c0 1.9 3 4 6.8 4s6.8-2.1 6.8-4v-3.4L12 16.3l-6.8-3.7z"/></svg></div>
-      <h2>Education</h2>
-    </div>
-    <div class="rows">
-      <div class="r"><div class="lbl">M.Eng <small>2017 ~ 2019</small></div>
-        <div class="c">Civil Engineering (Structural &amp; Earthquake Engineering)<br><b>Mahidol University</b>, Thailand</div></div>
-      <div class="r"><div class="lbl">B.Eng <small>2006 ~ 2011</small></div>
-        <div class="c">Port and Harbour Engineering (Maritime Engineering)<br><b>Myanmar Maritime University</b>, Myanmar</div></div>
+    <p class="sub">Ground-motion projects</p>
+    <div class="skills">
+      <span class="skill">DLSU (retrofit)</span>
+      <span class="skill">SM Lane (retrofit)</span>
+      <span class="skill">Forbes Media Tower</span>
+      <span class="skill">Bauhinia</span>
+      <span class="skill">Rock Arthaland</span>
+      <span class="skill">Velaris Tower 3</span>
+      <span class="skill">Central Embassy, Bangkok</span>
+      <span class="skill">State Audit Office, Bangkok</span>
     </div>
   </section>
 
-  <!-- Work Experience -->
-  <section>
-    <div class="sh">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6a2 2 0 0 1 2 2v2h4a1 1 0 0 1 1 1v4H2V8a1 1 0 0 1 1-1h4V5a2 2 0 0 1 2-2zm0 4h6V5H9v2zM2 13.5h8V15h4v-1.5h8V20a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-6.5z"/></svg></div>
-      <h2>Work Experience</h2>
-    </div>
-    <div class="rows">
-      <div class="r"><div class="lbl"><b>AIT Solutions</b><small>Asian Institute of Technology<br>Bangkok, Thailand</small></div>
-        <div class="c"><b>Senior Structural Engineer</b> <span class="when">(April 2021 ~ Present)</span>
-          <ul>
-            <li>Performance-based seismic design (PBD)</li>
-            <li>Develop site-specific design ground motions for PBD and retrofit projects</li>
-            <li>Develop detailed 3D nonlinear models of tall buildings for nonlinear time history analysis (NLRHA) using Perform3D</li>
-            <li>Evaluate global response parameters (drift, acceleration and axial strains) and component-level response parameters (rotation, displacement and shear) to comply with LATBSDC and TBI guidelines</li>
-            <li>Develop axial strain mapping to revise or optimize the seismic boundary zone reinforcement of shear walls (strain-based confinement)</li>
-            <li>Detailed design of structural components to comply with ACI, AISC and LATBSDC guidelines based on NLRHA results</li>
-            <li>Seismic evaluations and retrofit designs for existing buildings in accordance with ASCE/SEI 41 (Tier 1: Screening, Tier 2: Detailed Evaluation, Tier 3: Advanced Analysis)</li>
-            <li>Design diaphragms to resist seismic forces, including collector elements, shear-friction transfer, chord reinforcement, and in-plane shear capacity of floor slabs</li>
-            <li>Perform advanced foundation design using spaghetti moment envelopes and force polygon methods derived from NLRHA results</li>
-          </ul></div></div>
-      <div class="r"><div class="lbl"><b>Utility Design Consultant</b><small>Bangkok, Thailand</small></div>
-        <div class="c"><b>Structural Design Engineer (Internship)</b> <span class="when">(Jun 2020 ~ Oct 2020)</span>
-          <ul>
-            <li>Design the existing roof slab of MRT Orange Line OR22 station for the addition of The Square Skywalk above, Thailand</li>
-            <li>Gantry crane foundation design at PTTLNG Nong Fab LNG Receiving Terminal Project, Thailand</li>
-            <li>Front end engineering design at Nong Fab LNG Receiving Terminal Project, Thailand</li>
-          </ul></div></div>
-      <div class="r"><div class="lbl"><b>ST Engineers Co Ltd</b><small>Yangon, Myanmar</small></div>
-        <div class="c"><b>Structural Design Engineer</b> <span class="when">(Sep 2013 ~ Aug 2017)</span>
-          <ul>
-            <li>Completed numerous low- and mid-rise reinforced concrete residential and commercial building projects</li>
-            <li>Delivered numerous steel structure projects including industrial facilities and commercial buildings</li>
-          </ul></div></div>
-      <div class="r"><div class="lbl"><b>AVA Global Pte Ltd</b><small>Yangon, Myanmar</small></div>
-        <div class="c"><b>Project Coordinator (Façade Engineering)</b> <span class="when">(Feb 2013 ~ Aug 2013)</span></div></div>
-      <div class="r"><div class="lbl"><b>Max Construction Co Ltd</b><small>Yangon, Myanmar</small></div>
-        <div class="c"><b>Graduate Civil Engineer</b> <span class="when">(Mar 2012 ~ Jan 2013)</span></div></div>
+  <section id="research">
+    <h2>Research</h2>
+    <div class="research">
+      <div class="card">
+        <div class="label">Journal article · 2021</div>
+        <h3>The Effect of Ground Motion Selection Methods for Seismic Design of Tall Buildings: A Case Study for Mandalay City</h3>
+        <p>Walailak Journal of Science and Technology (WJST), Vol. 18.</p>
+      </div>
+      <div class="card">
+        <div class="label">M.Eng thesis · 2019</div>
+        <h3>Pulse-like Effects of Near-fault Earthquakes on Reinforced Concrete Buildings in Mandalay, Myanmar</h3>
+        <p>Compared 4-, 10- and 16-storey RC special moment frames under near-fault (pulse) and far-field suites, using Shahi &amp; Baker (2014) pulse classification and 3D NLRHA in SeismoStruct. Advisor: Dr. Teraphan Ornthammarath (Mahidol). Chair: Dr. Chatpan Chintanapakdee (Chulalongkorn).</p>
+      </div>
     </div>
   </section>
 
-  <!-- Key Projects -->
-  <section>
-    <div class="sh">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V5l7-3v19H9v-3H7v3H4zm2-14v2h3V7H6zm0 4v2h3v-2H6zm6 10V8l8 3v10h-3v-3h-2v3h-3zm2-8v2h4v-2h-4z"/></svg></div>
-      <h2>Key Projects</h2>
-    </div>
-    <div class="rows">
-      <div class="r"><div class="lbl"><b>Oriana</b><small>Philippines</small></div>
-        <div class="c">Two 55-floor above grade residential towers on a six-floor common podium</div></div>
-      <div class="r"><div class="lbl"><b>Forum</b><small>Philippines</small></div>
-        <div class="c">Four 31-floor above grade residential towers on common podium, ~150 m</div></div>
-      <div class="r"><div class="lbl"><b>District-M</b><small>Philippines</small></div>
-        <div class="c">41-floor residential tower with a commercial podium complex, ~136 m</div></div>
-      <div class="r"><div class="lbl"><b>Jade</b><small>Philippines</small></div>
-        <div class="c">52-floor residential high-rise with commercial complex, ~163 m and ~59,500 m²</div></div>
-      <div class="r"><div class="lbl"><b>Bench Headquarter</b><small>Philippines</small></div>
-        <div class="c">21 floors above grade with GFA ~54,000 m², ~108 m</div></div>
-      <div class="r"><div class="lbl"><b>State Audit Building (SAO)</b><small>Thailand</small></div>
-        <div class="c">Participated in the technical investigation team into an earthquake-induced collapse through nonlinear performance-based seismic design</div></div>
-    </div>
-  </section>
-
-  <!-- Knowledge Background -->
-  <section>
-    <div class="sh">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3.3h-4l-.4 2.6a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1l.4 2.6h4l.4-2.6a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5L19.4 13zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg></div>
-      <h2>Knowledge Background</h2>
-    </div>
-    <div class="rows">
-      <div class="r"><div class="lbl">Relevant Skills</div>
-        <div class="c dots">
-          <span>FEM and Advanced Structural Dynamic</span>
-          <span>Performance-Based Seismic Design of Tall Buildings</span>
-          <span>Site-specific Design Ground Motions</span>
-          <span>Steel and Concrete Design</span>
-          <span>Diaphragm Slab Design</span>
-          <span>Advanced Foundation Design</span>
-          <span>Python and MATLAB Programming</span>
-          <span>CSI Tools (ETABS, SAFE, SAP2000, Perform3D, etc.)</span>
-          <span>spColumn</span>
-          <span>Probabilistic Seismic Hazard</span>
-          <span>OpenQuake</span>
-        </div></div>
+  <section id="skills">
+    <h2>Skills &amp; tools</h2>
+    <div class="skills">
+      <span class="skill">FEM &amp; advanced structural dynamics</span>
+      <span class="skill">PBSD of tall buildings</span>
+      <span class="skill">Site-specific ground motions</span>
+      <span class="skill">Probabilistic seismic hazard</span>
+      <span class="skill">Steel &amp; concrete design</span>
+      <span class="skill">Diaphragm design</span>
+      <span class="skill">Advanced foundation design</span>
+      <span class="skill">Perform3D</span>
+      <span class="skill">ETABS</span>
+      <span class="skill">SAP2000</span>
+      <span class="skill">SAFE</span>
+      <span class="skill">spColumn</span>
+      <span class="skill">OpenQuake</span>
+      <span class="skill">SeismoStruct / SeismoMatch / SeismoSignal</span>
+      <span class="skill">Python</span>
+      <span class="skill">MATLAB</span>
+      <span class="skill">ObsPy</span>
     </div>
   </section>
 
-  <!-- Research Background -->
-  <section>
-    <div class="sh">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M2 5c2.6-1 5.6-1 9 .8V20c-3.4-1.6-6.4-1.6-9-.6V5zm20 0v14.4c-2.6-1-5.6-1-9 .6V5.8C16.4 4 19.4 4 22 5zM4 8v1.6c1.7-.4 3.4-.2 5 .5V8.5C7.4 7.8 5.7 7.6 4 8zm0 4v1.6c1.7-.4 3.4-.2 5 .5v-1.6c-1.6-.7-3.3-.9-5-.5zm16-4c-1.7-.4-3.4-.2-5 .5v1.6c1.6-.7 3.3-.9 5-.5V8zm0 4c-1.7-.4-3.4-.2-5 .5v1.6c1.6-.7 3.3-.9 5-.5V12z"/></svg></div>
-      <h2>Research Background</h2>
+  <section id="education">
+    <h2>Education</h2>
+    <div class="edu">
+      <div class="card">
+        <div class="label">2017 — 2019</div>
+        <h3>M.Eng, Civil Engineering (Structural &amp; Earthquake)</h3>
+        <p>Mahidol University, Thailand</p>
+      </div>
+      <div class="card">
+        <div class="label">2006 — 2011</div>
+        <h3>B.Eng, Port &amp; Harbour Engineering</h3>
+        <p>Myanmar Maritime University, Myanmar</p>
+      </div>
     </div>
-    <div class="rows">
-      <div class="r"><div class="lbl">Master Thesis</div>
-        <div class="c">Pulse-like Effects of Near-fault Earthquakes on Reinforced Concrete Buildings in Mandalay, Myanmar
-          <div class="meta">Major Advisor: Dr. Teraphan Ornthammarath (<b>Mahidol University</b>)</div>
-          <div class="meta">Chairman: Dr. Chatpan Chintanapakdee (<b>Chulalongkorn University</b>)</div></div></div>
-      <div class="r"><div class="lbl">Journal Publishing</div>
-        <div class="c">The Effect of Ground Motion Selection Methods for Seismic Design of Tall Buildings: A Case Study for Mandalay City<br>
-          Vol 18, 2021, Walailak Journal of Science and Technology (<b>WJST</b>)</div></div>
-    </div>
+
+    <p class="sub">Awards &amp; certificates</p>
+    <ul class="awards">
+      <li><span class="yr">2019</span><div><strong>Best Research Paper Award</strong><span>24th National Convention on Civil Engineering (NCCE24), Thailand</span></div></li>
+      <li><span class="yr">2019</span><div><strong>Thesis Grant</strong><span>Faculty of Graduate Studies Alumni Association, Mahidol University</span></div></li>
+      <li><span class="yr">2019</span><div><strong>Seismic Assessment &amp; Retrofitting of Existing RC Structures</strong><span>Certificate, IngeoExpert, Madrid</span></div></li>
+      <li><span class="yr">2017</span><div><strong>Mahidol Postgraduate Scholarship</strong><span>For international graduate students (Partial, Type 2.4)</span></div></li>
+    </ul>
   </section>
 
-  <!-- Professional & Academic Achievement -->
-  <section>
-    <div class="sh">
-      <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2 2 6.5 12 11l8-3.6V12h1.6V6.5L12 2zM6 9.6v3.2C6 14.6 8.7 16 12 16s6-1.4 6-3.2V9.6L12 12.3 6 9.6zM8 17.5l-1.6 4.4 2.2-.8 1.2 2 1.4-4.2a9 9 0 0 1-3.2-1.4zm8 0a9 9 0 0 1-3.2 1.4l1.4 4.2 1.2-2 2.2.8-1.6-4.4z"/></svg></div>
-      <h2>Professional &amp; Academic Achievement</h2>
-    </div>
-    <div class="rows ruled">
-      <div class="r"><div class="lbl">Scholarship (2017)</div>
-        <div class="c">2017 Mahidol Postgraduate Scholarships for International Graduate Students – <b>Partial Type 2.4</b></div></div>
-      <div class="r"><div class="lbl">Grant (2019)</div>
-        <div class="c">Thesis Grant awarded by the Faculty of Graduate Studies Alumni Association, <b>Mahidol University</b></div></div>
-      <div class="r"><div class="lbl">Best Research Paper Award</div>
-        <div class="c">The 24th National Convention on Civil Engineering, Thailand (<b>NCCE24, 2019</b>)</div></div>
-      <div class="r"><div class="lbl">Certificate (2019)</div>
-        <div class="c">Seismic Assessment &amp; Retrofitting of Existing Reinforced Concrete Structures<br><b>IngeoExpert</b>, Madrid, Spain</div></div>
-    </div>
-  </section>
+</main>
 
-  <footer>YAN NAUNG KO © 2026</footer>
-</div>
+<footer><div class="wrap">
+  <span>© 2026 Yan Naung Ko</span>
+  <a href="#">Back to top ↑</a>
+</div></footer>
+
 </body>
 </html>
