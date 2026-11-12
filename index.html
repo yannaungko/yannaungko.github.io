@@ -8,156 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    color-scheme: light;
-    --bg: #ffffff;
-    --paper: #ffffff;
-    --ink: #1b1d21;
-    --muted: #5d6169;
-    --line: #e3e3e3;
-    --accent: #b4441f;
-    --accent-soft: #f3e3da;
-    --grid: rgba(27,29,33,.06);
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 "IBM Plex Sans", system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
-
-  /* Header */
-  header.hero {
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid var(--line);
-  }
-  .hero .wrap { padding-top: 72px; padding-bottom: 8px; position: relative; z-index: 1; }
-  .eyebrow {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--accent);
-  }
-  h1 {
-    font-family: "Fraunces", Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(40px, 7vw, 68px);
-    line-height: 1.02;
-    margin: 12px 0 16px;
-    letter-spacing: -.01em;
-  }
-  .lede { font-size: 19px; color: var(--muted); max-width: 620px; margin: 0 0 28px; }
-  .contact { display: flex; flex-wrap: wrap; gap: 10px; }
-  .chip {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
-    background: var(--paper); color: var(--ink); font-size: 14px;
-  }
-  .chip:hover { border-color: var(--accent); text-decoration: none; }
-  .chip svg { width: 15px; height: 15px; flex: none; }
-  .skyline {
-    position: absolute; top: 0; left: 50%; margin-left: -950px;
-    width: 1900px; height: 300px; z-index: 0; pointer-events: none;
-  }
-  .skyline path { fill: none; stroke: #c9c9c9; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
-  .skyline .win { stroke: #e2e2e2; stroke-width: 1; }
-  @media (max-width: 900px) { .skyline { display: none; } }
-  .wave {
-    display: block; width: 100%; height: 180px; margin-top: -54px;
-    background: url("assets/seismic_wave.png") var(--x) center / auto 100% no-repeat;
-    position: relative; z-index: 0;
-  }
-  .wave {
-    --h: 180px; --x: max(16px, calc(50vw - 770px));
-  }
-  .wave::before, .wave::after {
-    content: ""; position: absolute; top: calc(var(--h) * 151.5 / 259 + 0.7px); height: 2.2px;
-    background: rgba(160,160,160,.9); transform: translateY(-50%);
-  }
-  .wave::before { left: 0; width: calc(var(--x) + 2px); }
-  .wave::after { left: calc(var(--x) + var(--h) * 1308 / 259 - 3px); right: 0; }
-  @media (max-width: 720px) { .wave { --h: 100px; --x: 40px; height: 100px; margin-top: -16px; background-position: 40px center; } }
-
-  nav.toc {
-    position: sticky; top: 0; z-index: 5;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
-  }
-  nav.toc .wrap { display: flex; gap: 22px; overflow-x: auto; padding-top: 12px; padding-bottom: 12px; }
-  nav.toc a { color: var(--muted); font-size: 14px; white-space: nowrap; }
-  nav.toc a:hover { color: var(--ink); text-decoration: none; }
-
-  section { padding: 56px 0 8px; }
-  h2 {
-    font-family: "IBM Plex Mono", monospace; font-weight: 500;
-    font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--muted); margin: 0 0 24px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-
-  .focus { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-  .card {
-    background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px;
-  }
-  .card h3 { margin: 0 0 6px; font-size: 17px; font-weight: 600; }
-  .card p { margin: 0; color: var(--muted); font-size: 15px; }
-  .num { font-family: "IBM Plex Mono", monospace; color: var(--accent); font-size: 13px; }
-
-  /* Timeline */
-  .job { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
-  .job:first-of-type { border-top: 0; padding-top: 0; }
-  .when { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--muted); padding-top: 3px; }
-  .job h3 { margin: 0; font-size: 18px; font-weight: 600; }
-  .org { color: var(--muted); margin: 2px 0 10px; font-size: 15px; }
-  .job ul { margin: 0; padding-left: 18px; }
-  .job li { margin: 4px 0; }
-  .job li::marker { color: var(--accent); }
-  @media (max-width: 640px) { .job { grid-template-columns: 1fr; gap: 4px; } }
-
-  /* Projects */
-  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-  .proj { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
-  .proj-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .proj h3 { margin: 0; font-size: 18px; font-weight: 600; }
-  .loc { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); white-space: nowrap; }
-  .proj p { margin: 0; color: var(--muted); font-size: 15px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
-  .tag { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
-
-  .gm-list { columns: 2 260px; column-gap: 32px; margin: 0; padding-left: 18px; }
-  .gm-list li { margin: 4px 0; break-inside: avoid; }
-  .gm-list li::marker { color: var(--accent); }
-  .sub { color: var(--muted); font-size: 15px; margin: 24px 0 10px; font-weight: 500; }
-
-  /* Skills */
-  .skills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill { border: 1px solid var(--line); background: var(--paper); border-radius: 6px; padding: 6px 12px; font-size: 14px; }
-
-  /* Research */
-  .research { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-  .label { font-family: "IBM Plex Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 6px; }
-  .research h3 { font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 20px; line-height: 1.3; margin: 0 0 8px; }
-
-  .edu { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .awards { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-  .awards li { display: grid; grid-template-columns: 70px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
-  .awards li:first-child { border-top: 0; }
-  .awards .yr { font-family: "IBM Plex Mono", monospace; color: var(--accent); font-size: 14px; }
-  .awards strong { font-weight: 600; }
-  .awards span { display: block; color: var(--muted); font-size: 15px; }
-
-  footer { margin-top: 64px; border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 14px; }
-  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
@@ -204,6 +55,7 @@
   <a href="#skills">Skills</a>
   <a href="#research">Research</a>
   <a href="#awards">Awards</a>
+  <a class="pf" href="portfolio.html">Portfolio →</a>
 </div></nav>
 
 <main class="wrap">
@@ -220,16 +72,24 @@
 
   <section id="education">
     <h2>Education</h2>
-    <div class="edu">
-      <div class="card">
-        <div class="label">2017 — 2019</div>
-        <h3>M.Eng, Civil Engineering (Structural &amp; Earthquake)</h3>
-        <p>Mahidol University, Thailand</p>
+
+    <div class="job">
+      <div class="when">2017 — 2019</div>
+      <div>
+        <h3>M.Eng, Civil Engineering (Structural &amp; Earthquake Engineering)</h3>
+        <div class="org">Mahidol University · Thailand</div>
+        <ul>
+          <li>Thesis: Pulse-like Effects of Near-fault Earthquakes on Reinforced Concrete Buildings in Mandalay, Myanmar.</li>
+          <li>Mahidol Postgraduate Scholarship for International Graduate Students (Partial, Type 2.4).</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="label">2006 — 2011</div>
-        <h3>B.Eng, Port &amp; Harbour Engineering</h3>
-        <p>Myanmar Maritime University, Myanmar</p>
+    </div>
+
+    <div class="job">
+      <div class="when">2006 — 2011</div>
+      <div>
+        <h3>B.Eng, Port and Harbour Engineering (Maritime Engineering)</h3>
+        <div class="org">Myanmar Maritime University · Myanmar</div>
       </div>
     </div>
   </section>
