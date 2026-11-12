@@ -43,7 +43,7 @@
       linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size: 32px 32px;
   }
-  .hero .wrap { padding-top: 72px; padding-bottom: 56px; position: relative; z-index: 1; }
+  .hero .wrap { padding-top: 72px; padding-bottom: 8px; position: relative; z-index: 1; }
   .eyebrow {
     font-family: "IBM Plex Mono", monospace;
     font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
@@ -66,11 +66,16 @@
   }
   .chip:hover { border-color: var(--accent); text-decoration: none; }
   .chip svg { width: 15px; height: 15px; flex: none; }
-  .spectrum {
-    position: absolute; right: -40px; bottom: 0; width: 560px; max-width: 70%;
-    opacity: .9; pointer-events: none;
+  .wave {
+    display: block; width: 100%; height: 120px; margin-top: -8px;
+    background: url("assets/seismic_wave.png") left center / auto 100% no-repeat;
+    position: relative; z-index: 0;
   }
-  @media (max-width: 720px) { .spectrum { opacity: .35; } }
+  .wave::after {
+    content: ""; position: absolute; top: 58.5%; right: 0; height: 2px;
+    left: calc(120px * 1308 / 259 - 4px); background: #a0a0a0; transform: translateY(-50%);
+  }
+  @media (max-width: 720px) { .wave { height: 80px; } .wave::after { left: calc(80px * 1308 / 259 - 4px); } }
 
   nav.toc {
     position: sticky; top: 0; z-index: 5;
@@ -149,19 +154,6 @@
 <body>
 
 <header class="hero">
-  <svg class="spectrum" viewBox="0 0 560 260" aria-hidden="true">
-    <defs>
-      <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
-        <stop offset="0" stop-color="var(--accent)" stop-opacity=".18"/>
-        <stop offset="1" stop-color="var(--accent)" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <!-- stylised design response spectrum -->
-    <path d="M20 200 C 50 120, 70 70, 110 60 L 210 58 C 260 60, 300 110, 360 150 C 420 185, 480 205, 560 214 L 560 260 L 20 260 Z" fill="url(#g)"/>
-    <path d="M20 200 C 50 120, 70 70, 110 60 L 210 58 C 260 60, 300 110, 360 150 C 420 185, 480 205, 560 214" fill="none" stroke="var(--accent)" stroke-width="2.2"/>
-    <path d="M20 210 C 55 140, 80 95, 120 88 C 160 70, 190 98, 225 84 C 270 96, 300 135, 360 162 C 420 192, 480 210, 560 220" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 4" opacity=".7"/>
-    <path d="M20 205 C 50 150, 75 110, 105 74 C 145 52, 180 82, 215 66 C 255 76, 305 124, 360 156 C 420 188, 480 208, 560 217" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45"/>
-  </svg>
   <div class="wrap">
     <div class="eyebrow">Structural &amp; Earthquake Engineering</div>
     <h1>Yan Naung Ko</h1>
@@ -181,6 +173,7 @@
       </span>
     </div>
   </div>
+  <div class="wave" role="img" aria-label="Seismic wave"></div>
 </header>
 
 <nav class="toc"><div class="wrap">
