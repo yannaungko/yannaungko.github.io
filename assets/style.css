@@ -60,7 +60,7 @@ h1 {
 @media (max-width: 900px) { .skyline { display: none; } }
 .wave {
   display: block; width: 100%; height: 180px; margin-top: -54px;
-  background: url("assets/seismic_wave.png") var(--x) center / auto 100% no-repeat;
+  background: url("seismic_wave.png") var(--x) center / auto 100% no-repeat;
   position: relative; z-index: 0;
 }
 .wave {
